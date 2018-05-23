@@ -1,0 +1,45 @@
+<link rel="import" href="./../components/dgt-select/dgt-select.html">
+
+<!-- Defines the element's style and local DOM -->
+<template id="demo-dgt-select">
+    <button id="addItem">Add item</button>
+</template>
+
+<dgt-select id="teste"></dgt-select>
+
+<script>
+  class DemoDgtSelect extends HTMLElement {
+    constructor() { 
+      super();
+      let template = document.currentScript.ownerDocument.getElementById('demo-dgt-select');
+      let templateContent = template.content;
+      
+      this.attachShadow({mode: 'open'}).appendChild(templateContent.cloneNode(true));
+      this._appendChild();
+      this._addListeners();
+    } 
+
+    static get is() { return 'demo-dgt-select'; }
+
+    getSelect(id){
+      return this.shadowRoot.getElementById(id);
+    }
+
+    onClick() {
+      this.getSelect('teste');
+    }
+
+    _appendChild(){
+      this.shadowRoot.appendChild(document.currentScript.ownerDocument.getElementById('teste'));
+    }
+
+
+    _addListeners() {
+      this.shadowRoot.getElementById('addItem').addEventListener('click', () => {
+        this.getSelect('teste').addItems(["Item"]);
+      });
+    }
+  }
+  
+  customElements.define(DemoDgtSelect.is, DemoDgtSelect);
+</script>

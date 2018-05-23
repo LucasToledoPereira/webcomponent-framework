@@ -1,0 +1,107 @@
+<dom-module id='dgt-select-style'>
+    <template>
+        <style>
+            :host {
+                display: flex;
+                padding-right: 1rem;
+                padding-bottom: 1rem;
+                overflow: hidden;
+                align-self: flex-start;
+                flex-flow: column-reverse;
+                width: 16rem
+            }
+
+            :host[required] label:before{
+                content: "*";
+                margin-right: .2em;
+                color: #E63B34
+            }
+
+            :host[dgt-error] .input-field{
+                border-bottom: .0625rem solid #E63A34;
+                -webkit-box-shadow: 0 .0625rem 0 0 #E63A34;
+                -moz-box-shadow: 0 .0625rem 0 0 #E63A34;
+                box-shadow: 0 .0625rem 0 0 #E63A34
+            }
+
+            :host .dgt-error-msg{
+                color: #E63A34;
+                font-size: .75em;
+                position: relative;
+                top: .3rem;
+                text-transform: lowercase
+            }
+
+            :host .input-field{
+                padding: 0;
+                width: 100%;
+                display: block
+            }
+
+            :host .input-field:focus+label{
+                color: #1565C0
+            }
+
+            :host label{
+                width: 100%;
+                pointer-events: none;
+                padding-right: .4em;
+                display: block
+            }
+
+            :host select{
+                cursor:default
+            }
+
+            :host select option{
+                cursor: pointer
+            }
+
+            :host select option[disabled]{
+                color: rgba(0,0,0,.4);
+                cursor: no-drop
+            }
+
+            :host[search-bar] option{
+                padding-left: 2rem
+            }
+
+            :host .search-bar{
+                position: relative;
+                min-height: 2rem;
+                line-height: 2rem;
+                width: 100%
+            }
+
+            :host .search-bar:after{
+                content: "\e8b0";
+                position: absolute;
+                left: .3rem;
+                font-family: mdfonticon;
+                opacity: .4;
+                top: calc(50% - .7rem);
+                font-size: 1.4rem;
+                line-height: 1.4rem
+            }
+
+            :host .search-bar input{
+                background-color: transparent;
+                border: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                padding-left: 2rem;
+                padding-right: 1rem;
+                line-height: 2rem;
+                border-bottom: .0625rem solid #aaa
+            }
+
+            :host .search-bar input:focus{
+                outline: 0;
+                border-bottom:	.0625rem solid #1565C0
+            }
+        </style>
+    </template>
+</dom-module>
