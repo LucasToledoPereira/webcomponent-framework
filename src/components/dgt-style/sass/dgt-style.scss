@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+// Normalize
+@import '../vendor/normalize.scss';
+
+// Partials
+@import 'partials/reset';
+@import 'partials/general';
+@import 'partials/typography';
+@import 'partials/form-elements';
+@import 'partials/grid';
+@import 'partials/utility-classes';
+@import 'partials/buttons';
+@import 'partials/tables';
+@import 'partials/loading';
+
+// Icons
+@import '../vendor/material-design-icons/css/materialdesignicons.min.css';
+@import '../vendor/material-design-fonticons/styles/mdfi.css';

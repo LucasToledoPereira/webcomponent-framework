@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+table {
+	border-spacing: 0;
+}
+.table th {
+	font-size: .875rem;
+	font-weight: normal;
+	font-family: 'Roboto-Bold', Arial, sans-serif;
+}
+.table td,
+.table th {
+	padding: .25rem .5rem;
+	padding-right: 1.5rem;
+	text-align: left;
+	vertical-align: top;
+}
+.table:not(.table-striped) tbody tr:first-of-type td,
+.table:not(.table-striped) tbody tr:first-of-type th {
+	border-top: .0625rem solid rgba(0,0,0,.13);
+}
+.table:not(.table-striped) tbody tr:not(:last-of-type) td,
+.table:not(.table-striped) tbody tr:not(:last-of-type) th {
+	border-bottom: .0625rem solid rgba(0,0,0,.13);
+}
+
+
+/* Linhas verticais */
+
+.table.table-lined-v td:not(:first-of-type),
+.table.table-lined-v th:not(:first-of-type) {
+	border-left: .0625rem solid rgba(0,0,0,.13);
+}
+
+
+/* Com borda */
+
+
+.table.table-bordered {
+	border: .0625rem solid rgba(0,0,0,.13);
+}
+
+
+/* Listrada horizontalmente */
+
+.table.table-striped tbody tr:nth-child(odd) th,
+.table.table-striped tbody tr:nth-child(odd) td {
+	background-color: rgba(0,0,0,.08);
+}
+
+
+/* Listrada verticalmente */
+
+.table.table-striped-v th:nth-child(even),
+.table.table-striped-v td:nth-child(even) {
+	background-color: rgba(0,0,0,.08);
+}
+
+
+/* Botoes para ordenaçao de colunas */
+
+.table .sortable:after {
+	font-family: 'mdfonticon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+.table .sortable:after { content: "\e652"; }
+.table .sortable.ascending:after { content: "\e721"; }
+.table .sortable.descending:after { content: "\e71e"; }
+
+.table .sortable {
+	cursor: pointer;
+}
+.table .sortable:hover {
+	color: #1565C0;
+}

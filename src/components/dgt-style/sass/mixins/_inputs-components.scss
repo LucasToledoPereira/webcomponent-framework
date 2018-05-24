@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+
+@mixin inputs-default($type) {
+
+    display: flex;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    overflow: hidden;
+    align-self: flex-start;
+    flex-flow: column-reverse;
+    width: 16rem;
+
+    &[required] label:before {
+        content: "*";
+        margin-right: .2em;
+        color: #E63B34;
+    }
+
+    &[dgt-error] .input-field {
+        border-bottom: .0625rem solid #E63A34;
+        -webkit-box-shadow: 0 .0625rem 0 0 #E63A34;
+           -moz-box-shadow: 0 .0625rem 0 0 #E63A34;
+                box-shadow: 0 .0625rem 0 0 #E63A34;
+    }
+
+    & .dgt-error-msg {
+        color: #E63A34;
+        font-size: .75em;
+        position: relative;
+        top: .3rem;
+        text-transform: lowercase;
+    }
+
+    .input-field {
+        padding: 0;
+        width: 100%;
+        display: block;
+
+        &:focus + label { color: #1565C0; }
+    }
+
+    label {
+        width: 100%;
+        pointer-events: none;
+        padding-right: .4em;
+        display: block;
+    }
+}
+
+
+@mixin inputs-floating-labels {
+
+    .input-field {
+        &::-webkit-input-placeholder {
+            opacity: 0;
+            transition: inherit;
+        }
+
+        &:focus::-webkit-input-placeholder { opacity: .7; }
+
+        &:placeholder-shown + label {
+            cursor: text;
+            transform-origin: left bottom;
+            transform: translate(0, 1.8em);
+        }
+
+        &:placeholder-shown:not(:focus) + label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &:focus + label { color: #1565C0; }
+
+        &:not(:placeholder-shown) + label,
+        &:focus + label {
+            transform: translate(0, .3em) scale(.95);
+            transform-origin: left bottom;
+            cursor: pointer;
+            width: 105%;
+            letter-spacing: 0.02em;
+        }
+    }
+}

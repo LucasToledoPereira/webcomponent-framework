@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>Dgt-Select Test</title>
+
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../bower_components/web-component-tester/browser.js"></script>
+    <script src="../src/components/dgt-select/dgt-select.js"></script>
+    
+  </head>
+  <body>
+    <test-fixture id="BasicView">
+      <template>
+          <dgt-select id="ex1" label="Meu DGT Select" search-bar></dgt-select>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('Select Tests', function() {
+        test('Select element should be present', function() {
+          let dgtSelect = fixture('BasicView');
+          expect(dgtSelect, 'Element dgt-select is not present').exists;
+        });
+
+        test('Should add options', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+
+          let items = dgtSelect.getItems();
+          assert.equal(items.length, 4);
+        });
+
+        test('Should remove option', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+          dgtSelect.removeItems([getItem(2)]);
+          let items = dgtSelect.getItems();
+          assert.equal(items.length, 3);
+        });
+
+        test('Should remove option by index', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+          dgtSelect.removeItem(3);
+          let items = dgtSelect.getItems();
+          assert.equal(items.length, 3);
+        });
+
+        test('Should clear options and set new options', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+          dgtSelect.setItems([getItem(5), getItem(6)]);
+          let items = dgtSelect.getItems();
+          assert.equal(items.length, 2);
+        });
+
+        test('Should clear options and set new options', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+          dgtSelect.setItems([getItem(5), getItem(6)]);
+          let items = dgtSelect.getItems();
+          assert.equal(items.length, 2);
+        });
+
+        test('Should clear options', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+          dgtSelect.clearItems();
+          let items = dgtSelect.getItems();
+          assert.equal(items.length, 0);
+        });
+
+        test('Should select option', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+          dgtSelect.setSelectedItems(getItem(3));
+          let items = dgtSelect.getSelectedItems();
+          assert.equal(items[0], getItem(3));
+        });
+
+        test('Should disable option', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+          dgtSelect.disableItems(getItem(3));
+          let items = dgtSelect.getAvailableItems();
+          assert.equal(items.length, 3);
+        });
+
+        test('Should filter', function() {
+          let dgtSelect = fixture('BasicView');
+          dgtSelect.addItems([getItem(1), getItem(2), getItem(3), getItem(4)]);
+          dgtSelect.filter(getItem(2));
+          let items = dgtSelect.getVisibleItemsIndexes();
+          assert.equal(items.length, 1);
+        });
+
+
+        function getItem(index){
+          return "Item " + index; 
+        }
+
+
+      });
+    </script>
+  </body>
+</html>

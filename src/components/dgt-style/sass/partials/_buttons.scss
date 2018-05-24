@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+a.btn:-webkit-any-link { text-decoration: none; }
+
+.btn {
+	display: inline-block;
+	font-family: 'Roboto-Regular', Arial, sans-serif;
+	text-decoration: none;
+	color: inherit;
+	white-space: nowrap;
+	background-color: transparent;
+	border: 0;
+	height: 2.25rem;
+	line-height: 2.25rem;
+	padding: 0 1rem;
+	border-radius: .25rem;
+	cursor: pointer;
+	text-transform: uppercase;
+	font-size: .9375rem;
+	text-align: center;
+	transition: all linear .05s;
+	-webkit-box-shadow: 0 .125rem .125rem 0 rgba(0,0,0,.2);
+	   -moz-box-shadow: 0 .125rem .125rem 0 rgba(0,0,0,.2);
+	        box-shadow: 0 .125rem .125rem 0 rgba(0,0,0,.2);
+}
+.btn:hover:not([disabled]) {
+	background-color: rgba(0,0,0,.08);
+	text-decoration: none;
+}
+.btn:active:not([disabled]),
+.btn.active {
+	-webkit-box-shadow: 0 .4rem .5rem 0 rgba(0,0,0,.5);
+	   -moz-box-shadow: 0 .4rem .5rem 0 rgba(0,0,0,.5);
+	        box-shadow: 0 .4rem .5rem 0 rgba(0,0,0,.5);
+}
+.btn[disabled],
+.btn[disabled]:hover,
+.btn[disabled]:active,
+.btn[disabled].active,
+.btn[disabled]:focus {
+	background-color: transparent;
+	cursor: no-drop;
+	color: rgba(0,0,0,.4);
+}
+
+
+/* Botões de ação primária */
+.btn-primary {
+	color: white;
+	background-color: #164C9D;
+}
+.btn-primary:hover:not([disabled]),
+.btn-primary:focus:not([disabled]),
+.btn-primary:not([disabled]).active { background-color: #093C84; }
+
+.btn-primary[disabled],
+.btn-primary[disabled]:hover,
+.btn-primary[disabled]:active,
+.btn-primary[disabled].active,
+.btn-primary[disabled]:focus {
+	background-color: rgba(85, 105, 126,.3);
+	color: rgba(255,255,255,.7);
+}
+
+
+/* Botões do tipo ícone */
+.btn-icn {
+	padding: 0;
+	border-radius: 100%!important;
+	width: 1.8em;
+	height: 1.8em;
+	line-height: 1.8em;
+	font-size: 1rem;
+	transition: background-color .2s ease-in-out;
+	/*background-color: red;*/
+}
+.btn-icn:active,
+.btn-icn.active,
+.btn-icn:hover,
+.btn-icn:focus {
+    background-color: rgba(0,0,0,.08);
+	border-radius: 100%!important;
+}
+
+
+/* Botões pequenos */
+.btn-sm {
+	height: 1.5rem;
+	line-height: 1.5rem;
+	padding: 0 .5rem;
+	font-size: .75rem;
+}
+.btn-sm.btn-icn {
+	width: 1.5rem;
+	padding: 0;
+}
+.btn-sm [class^="mdfi_"],
+.btn-sm [class*=" mdfi_"],
+.btn-sm .mdi {
+	font-size: 135%;
+}
+
+
+/* Botões grandes */
+.btn-lg {
+	height: 3rem;
+	line-height: 3rem;
+	padding: 0 1.1rem;
+	font-size: 1em;
+}
+.btn-lg.btn-icn {
+	width: 3rem;
+	padding: 0;
+}
+.btn-lg [class^="mdfi_"],
+.btn-lg [class*=" mdfi_"],
+.btn-lg .mdi {
+	font-size: 160%;
+}

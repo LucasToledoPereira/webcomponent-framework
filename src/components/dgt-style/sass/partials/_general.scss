@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+html {
+	font-size: 16px;
+	font-weight: normal;
+	color: #111;
+	font-family: 'Roboto-Regular', Arial, sans-serif;
+	font-weight: normal;
+	line-height: 1.35;
+}
+
+body { background-color: #EDEDED; }
+
+button {
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+p { margin-bottom:  .5rem; }
+
+p:last-child {
+	-webkit-margin-end: 0;
+	-webkit-margin-after: 0;
+	margin-bottom:  0;
+}
+
+hr {
+	margin: .8rem 0;
+	border: 0;
+	height: 0;
+	border-top: .0625rem solid rgba(0,0,0,.13);
+	border-bottom: .0625rem solid rgba(255,255,255,.3);
+}
+
+ul, ol { margin: .5rem 0 .5rem 1.3rem; }
+
+a, .txt-link {
+	color: #1565C0;
+	text-decoration: none;
+	cursor: pointer;
+}
+a:hover, .txt-link:hover {
+	text-decoration: underline;
+}
+
+
+/* Gerar setas à direita de links externos (exceção: .btn-icn) */
+
+a[target="_blank"]:not(.btn-icn):after {
+	font-family: 'mdfonticon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+	content: "\e890";
+	color: rgba(0,0,0,.4);
+}
+a[target="_blank"].btn:after {
+	margin-left: .2rem;
+}
+
+
+/* Barras de rolagem */
+
+*::-webkit-scrollbar {
+	width: .58rem;
+	height: .58rem;
+}
+*::-webkit-scrollbar:hover { background-color: rgba(0, 0, 60, .08); }
+*::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); }
+*::-webkit-scrollbar-thumb:hover { background: rgba(13, 71, 161, .3); }
+
+
+/* Fundo escuro */
+
+.bg-dark {
+	background-color: #333;
+    color: #fff;
+}
+
+
+/* Barras de rolagem em fundo invertido */
+
+.bg-dark::-webkit-scrollbar,
+.bg-dark *::-webkit-scrollbar { background-color: rgba(255, 255, 255, .08); }
+
+.bg-dark::-webkit-scrollbar:hover,
+.bg-dark *::-webkit-scrollbar:hover { background-color: rgba(255, 255, 255, .15); }
+
+.bg-dark::-webkit-scrollbar-thumb,
+.bg-dark *::-webkit-scrollbar-thumb { background: rgba(255,255,255,.2); }
+
+.bg-dark::-webkit-scrollbar-thumb:hover,
+.bg-dark *::-webkit-scrollbar-thumb:hover { background: rgba(144, 202, 249, .4) }
+
+
+/* Ícones */
+
+[class^="mdfi_"],
+[class*=" mdfi_"],
+.mdi {
+	font-size: 1.25em;
+	vertical-align: middle;
+}
+
+
+/* Ícones dentro de títulos são mais claros */
+
+h1 i,
+h2 i,
+h3 i,
+h4 i { opacity: .25; }
+h5 i,
+h6 i { opacity: .7; }
+
+
+/* Ícones dentro de links não tem underline */
+
+a:hover i,
+.txt-link:hover i { text-decoration: none; }
+
+
+/* Cards */
+
+.card {
+	background-color: #fff;
+	box-shadow: 0 .125rem .125rem 0 rgba(0,0,0,.2),0 .1875rem .0625rem -.125rem rgba(0,0,0,.23),0 .0625rem .3125rem 0 rgba(0,0,0,.14);
+}

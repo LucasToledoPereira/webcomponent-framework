@@ -78,7 +78,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(true);\n// imports\nexports.i(__webpack_require__(/*! -!../../node_modules/css-loader??ref--6-1!./main.css */ \"./node_modules/css-loader/index.js??ref--6-1!./src/css/main.css\"), \"\");\n\n// module\nexports.push([module.i, \"body p {\\n  background-color: yellow; }\\n\", \"\", {\"version\":3,\"sources\":[\"C:/Users/supero/Desktop/Digitro/Projects/webcomponent-framework/src/css/src/css/component.scss\"],\"names\":[],\"mappings\":\"AAAA;EAEE,yBAAwB,EACxB\",\"file\":\"module.scss\",\"sourcesContent\":[\"body {\\r\\n\\tp {\\r\\n\\t\\tbackground-color: yellow;\\r\\n\\t}\\r\\n}\"],\"sourceRoot\":\"\"}]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/css/module.scss?./node_modules/css-loader??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(true);\n// imports\nexports.i(__webpack_require__(/*! -!../../node_modules/css-loader??ref--6-1!./main.css */ \"./node_modules/css-loader/index.js??ref--6-1!./src/css/main.css\"), \"\");\n\n// module\nexports.push([module.i, \"\\n\", \"\", {\"version\":3,\"sources\":[],\"names\":[],\"mappings\":\"\",\"file\":\"module.scss\",\"sourceRoot\":\"\"}]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/css/module.scss?./node_modules/css-loader??ref--6-1!./node_modules/sass-loader/lib/loader.js??ref--6-2");
 
 /***/ }),
 
@@ -89,7 +89,7 @@ eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(true);\n// imports\n\n\n// module\nexports.push([module.i, \"body {\\r\\n    line-height: 2;\\r\\n}\", \"\", {\"version\":3,\"sources\":[\"C:/Users/supero/Desktop/Digitro/Projects/webcomponent-framework/src/css/main.css\"],\"names\":[],\"mappings\":\"AAAA;IACI,eAAe;CAClB\",\"file\":\"main.css\",\"sourcesContent\":[\"body {\\r\\n    line-height: 2;\\r\\n}\"],\"sourceRoot\":\"\"}]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/css/main.css?./node_modules/css-loader??ref--6-1");
+eval("exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(true);\n// imports\n\n\n// module\nexports.push([module.i, \"body {}\", \"\", {\"version\":3,\"sources\":[\"C:/Users/supero/Desktop/Digitro/Projects/webcomponent-framework/src/css/main.css\"],\"names\":[],\"mappings\":\"AAAA,OAAO\",\"file\":\"main.css\",\"sourcesContent\":[\"body {}\"],\"sourceRoot\":\"\"}]);\n\n// exports\n\n\n//# sourceURL=webpack:///./src/css/main.css?./node_modules/css-loader??ref--6-1");
 
 /***/ }),
 

@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+
+          color: inherit;
+      font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+body, pre, form, p {
+    margin: 0;
+}
+
+iframe {
+    border: none;
+    display: block;
+}
+
+ul, ol, menu, dir, p {
+    -webkit-margin-before: 0;
+     -webkit-margin-after: 0;
+     -webkit-margin-start: 0;
+       -webkit-margin-end: 0;
+    -webkit-padding-start: 0;
+}
+
+:invalid             { box-shadow: none; }
+:-moz-submit-invalid { box-shadow: none; }
+:-moz-ui-invalid     { box-shadow: none; }
+
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}

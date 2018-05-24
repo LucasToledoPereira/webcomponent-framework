@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+@import 'dgt-style';
+
+//----------------------------------------------------------------------------------------------------------------
+
+html {
+	font-size: 14px;
+	font-family: Arial, sans-serif;
+	color: #444;
+}
+
+body { background-color: #f4f5f5; }
+
+
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1, h2, h3, h4 { font-family: Arial, sans-serif; }
+
+
+.btn, .btn.btn-primary {
+    border: .0714rem solid #DAD9D5;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: #ffffff;
+    background: -moz-linear-gradient(top, #ffffff 0%, #eaeaea 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eaeaea));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+    background: -o-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+    background: -ms-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#eaeaea 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+    color: #444;
+    padding: 0 .5rem;
+    text-transform: none;
+    height: 1.75rem;
+    line-height: 1.75rem;
+    box-shadow: none;
+}
+.btn:active:not([disabled]),
+.btn.active {
+	-webkit-box-shadow: none;
+	   -moz-box-shadow: none;
+	        box-shadow: none;
+}
+.btn:hover:not([disabled]) {
+	background-color: inherit;
+	border-color: gray;
+}
+
+.btn-primary[disabled]:active,
+.btn-primary[disabled].active,
+.btn-primary[disabled]:focus {
+    background-color: inherit;
+    color: rgba(0,0,0,.4);
+}
+
+.btn[disabled],
+.btn[disabled]:hover,
+.btn[disabled]:active,
+.btn[disabled].active,
+.btn[disabled]:focus {
+	background-color: inherit;
+	color: rgba(0,0,0,.4);
+}
+
+.btn-sm,
+.btn-sm.btn-primary {
+    line-height: 1.45rem;
+    height: 1.45rem;
+    padding: 0 .4rem;
+    font-size: .75rem;
+}
+
+.btn-sm.btn-icn {
+    width: 1.5rem;
+    padding: 0;
+}
+
+.dgt-loading {
+    border-top-color: #666;
+}
+
+
+//----------------------------------------------------------------------------------------------------------------
+
+/* Customização de componentes */
+
+@import '../../dgt-input/sass/dgt-input-intelletotum';
+@import '../../dgt-toast/sass/dgt-toast-intelletotum';
+@import '../../dgt-select/sass/dgt-select-intelletotum';
+@import '../../dgt-module/sass/dgt-module-intelletotum';
+@import '../../dgt-tabs/sass/dgt-tabs-intelletotum';
+@import '../../dgt-modal/sass/dgt-modal-intelletotum';
+@import '../../dgt-duallist/sass/dgt-duallist-intelletotum';
+@import '../../dgt-tree/sass/dgt-tree-intelletotum';
+@import '../../dgt-textarea/sass/dgt-textarea-intelletotum';
+//@import '../../dgt-dialog/sass/dgt-dialog-intelletotum';
+@import '../../dgt-dropdown/sass/dgt-dropdown-intelletotum';
+@import '../../dgt-livegrid/sass/dgt-livegrid-intelletotum';

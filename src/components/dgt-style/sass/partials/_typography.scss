@@ -1,0 +1,102 @@
+/* Fontes */
+
+@font-face {
+	font-family: 'CronosPro';
+	src: url('../fonts/CronosPro/CronosPro-Disp.eot');
+	src: url('../fonts/CronosPro/CronosPro-Disp.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/CronosPro/CronosPro-Disp.woff')       format('woff'),
+		 url('../fonts/CronosPro/CronosPro-Disp.ttf')        format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'CronosPro';
+	src: url('../fonts/CronosPro/CronosPro-SemiboldDisp.eot');
+	src: url('../fonts/CronosPro/CronosPro-SemiboldDisp.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/CronosPro/CronosPro-SemiboldDisp.woff')       format('woff'),
+		 url('../fonts/CronosPro/CronosPro-SemiboldDisp.ttf')        format('truetype');
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: 'Roboto-Light';
+	src: url('../fonts/Roboto/Roboto-Light.eot');
+	src: url('../fonts/Roboto/Roboto-Light.eot?#iefix') format('embedded-opentype'),
+		  url('../fonts/Roboto/Roboto-Light.woff') format('woff'),
+		  url('../fonts/Roboto/Roboto-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto-Bold';
+	src: url('../fonts/Roboto/Roboto-Bold.eot');
+	src: url('../fonts/Roboto/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
+		  url('../fonts/Roboto/Roboto-Bold.woff') format('woff'),
+		  url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Roboto-Regular';
+	src: url('../fonts/Roboto/Roboto-Regular.eot');
+	src: url('../fonts/Roboto/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+		  url('../fonts/Roboto/Roboto-Regular.woff') format('woff'),
+		  url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+/* Títulos e classes de tamanho de texto */
+
+h6, h5, h4, h3, h2, h1 {
+	font-weight: normal;
+	margin: 0;
+}
+
+h6, .h6 { font-size: .75rem;    }
+h5, .h5 { font-size: .875rem;   }
+h4, .h4 { font-size: 1.1rem;    }
+h3, .h3 { font-size: 1.1875rem; }
+h2, .h2 { font-size: 1.3125rem; }
+h1, .h1 { font-size: 1.4375rem; }
+    .z1 { font-size: 1.5625rem; }
+    .z2 { font-size: 1.6875rem; }
+    .z3 { font-size: 1.8125rem; }
+    .z4 { font-size: 1.9375rem; }
+    .z5 { font-size: 2.125rem;  }
+
+h4, .h4,
+h3, .h3,
+h2, .h2 { line-height: 1.2; }
+h1, .h1,
+    .z1,
+    .z2,
+    .z3 { line-height: 1.1; }
+    .z4,
+    .z5 { line-height: 1; }
+
+h4, h3, h2, h1 {
+	font-family: 'Roboto-Light', Arial, sans-serif;
+	margin-bottom: .5rem;
+}
+
+h6, h5 { margin-bottom: .3rem; }
+
+
+/* Utility classes */
+
+.txt-muted { color: rgba(0,0,0,.4); }
+
+.txt-light { font-family: 'Roboto-Light', Arial, sans-serif; }
+.txt-bold { font-family: 'Roboto-Bold', Arial, sans-serif; }
+
+.txt-center { text-align: center!important; }
+.txt-right { text-align: right!important; }
+
+.txt-success { color: #558B2F; }
+.txt-danger { color: #D32E2F; }
+.txt-alert { color: rgb(255,160,0); }
