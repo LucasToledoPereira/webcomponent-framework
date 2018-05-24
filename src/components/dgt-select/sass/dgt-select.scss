@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+@import '../../dgt-style/sass/mixins/inputs-components';
+
+dgt-select {
+
+    @include inputs-default(select);
+
+    select {
+        cursor: default;
+
+        option {
+            cursor: pointer;
+
+            &[disabled] {
+                color: rgba(0,0,0,.4);
+                cursor: no-drop;
+            }
+        }
+    }
+
+    &[search-bar] option {
+    	padding-left: 2rem;
+    }
+
+    /* Search-bar */
+
+    .search-bar {
+    	position: relative;
+    	min-height: 2rem;
+        line-height: 2rem;
+        width: 100%;
+
+        &:after {
+            content: "\e8b0";
+            position: absolute;
+            left: .3rem;
+            font-family: 'mdfonticon';
+            opacity: .4;
+            top: calc(50% - .7rem);
+            font-size: 1.4rem;
+            line-height: 1.4rem;
+        }
+
+        input {
+        	background-color: transparent;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            line-height: inherit;
+            padding-left: 2rem;
+            padding-right: 1rem;
+            line-height: 2rem;
+            border-bottom: .0625rem solid #aaa;
+
+            &:focus {
+                outline: none;
+                border-bottom: .0625rem solid #1565C0;
+            }
+        }
+    }
+}

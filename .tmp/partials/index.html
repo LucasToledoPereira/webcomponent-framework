@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Webpack First Test</title>
-		<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-		<!-- script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script -->
-		<link rel="stylesheet" href="src/components/dgt-style/css/dgt-style.css">
-		<link rel="stylesheet" href="src/components/dgt-select/css/dgt-select.css">
-		<link rel="import" href="src/demos/dgt-select-demo.html">
-		<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Webpack First Test</title><script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script><link rel="stylesheet" href="src/components/dgt-style/css/dgt-style.css"><link rel="stylesheet" href="src/components/dgt-select/css/dgt-select.css"><link rel="import" href="src/demos/dgt-select-demo.html"><style>
 			body {
 				font-family: "Lato", sans-serif;
 			}
@@ -55,19 +45,7 @@
 			  .sidenav {padding-top: 15px;}
 			  .sidenav a {font-size: 18px;}
 			}
-		</style>
-	</head>
-	<body>
-		<div id="mySidenav" class="sidenav" hidden>
-			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a id="select-menu" href="javascript:void(0)" onclick="showDemoSelect()">Select</a>
-		</div>
-		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>		
-		<div class="container">
-			<dgt-select-demo id="demo-select" hidden></dgt-select-demo>
-		</div>	
-	</body>
-	<script>
+		</style></head><body><div id="mySidenav" class="sidenav" hidden=""><a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> <a id="select-menu" href="javascript:void(0)" onclick="showDemoSelect()">Select</a></div><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span><div class="container"><dgt-select-demo id="demo-select" hidden=""></dgt-select-demo></div></body><script>
 		function openNav() {
 			document.getElementById("mySidenav").removeAttribute('hidden');
 		}
@@ -81,5 +59,4 @@
 			document.getElementById("select-menu").classList.add('selected');
 			document.getElementById("mySidenav").setAttribute('hidden', '');
 		}
-	</script>
-</html>
+	</script></html>
