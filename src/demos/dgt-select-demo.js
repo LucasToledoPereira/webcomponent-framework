@@ -52,6 +52,7 @@ class SelectDemo extends HTMLElement {
                                                   <div id="toast" style="display: none" class="toast toast-success">Item cadastrado</div>
                                                 </div>`;
   }
+
   static get is() { return 'dgt-select-demo'; }
 
   get count() {
