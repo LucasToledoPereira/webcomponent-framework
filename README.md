@@ -6,31 +6,30 @@ Implements a set of webcomponents using native Webcomponents.
 
 ##### Prerequisites
 
-First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
+First, install [Gulp](https://github.com/gulpjs/gulp) using
 [npm](https://www.npmjs.com) (we assume you have pre-installed [node.js](https://nodejs.org)).
 
-    npm install -g polymer-cli
+    npm install -g gulp
 
 Second, install [Bower](https://bower.io/) using [npm](https://www.npmjs.com)
 
     npm install -g bower
 
+Third, install dependencies
+
+    npm install
+    bower install
+
 ### Start the development server
 
-This command serves the app at `http://127.0.0.1:8081` (`localhost:8081`) and provides basic URL
+This command serves the app at `localhost:3000` and provides basic URL
 routing for the app:
 
-    polymer serve
+    gulp serve
 
 ### Build
 
-Run `polymer build` command
-
-### Preview the build
-
-This command serves your app. Replace `build-folder-name` with the folder name of the build you want to serve.
-
-    polymer serve build/build-folder-name/
+Run `gulp build` command
 
 ### Run tests
 
@@ -40,11 +39,9 @@ First install [Web Component Tester](https://github.com/Polymer/tools/tree/maste
 
 Than execute *wct* command at the root of the project
 
-
 ## Components
 
 - [DgtSelect](src/components/dgt-select)
-
 
 
 ## Authors
@@ -52,4 +49,4 @@ Than execute *wct* command at the root of the project
 
 
 
-For more information about Polymer see [Polymer Github](https://github.com/Polymer/polymer)
+For more information about WebComponents see [WebComponents Github](https://github.com/webcomponents/webcomponentsjs)

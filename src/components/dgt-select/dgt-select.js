@@ -153,7 +153,7 @@ class DgtSelect extends HTMLElement {
       this._fireEvent('change', {changed: true});
       if(evt.target.selectedIndex >= 0) {
         let options = this.shadowRoot.querySelectorAll('option');
-        this._fireEvent('selectItem', {rawValue: options[evt.target.selectedIndex].rawValue});
+        this._fireEvent('selectItem', options[evt.target.selectedIndex].rawValue);
       }
     }
 
@@ -198,12 +198,12 @@ class DgtSelect extends HTMLElement {
         if(this.isIE){
           if(el.style.visibility === 'hidden'){
             let span = document.createElement('span');
-            this.select.insertBefore(span, el);
+            this._getSelectElement().insertBefore(span, el);
             span.appendChild(el);
           } else {
             let span = el.parentElement;
             if(span.tagName === 'SPAN'){
-              this.select.insertBefore(el, span);
+              this._getSelectElement().insertBefore(el, span);
               span.remove();
             }
           }
@@ -245,7 +245,7 @@ class DgtSelect extends HTMLElement {
       this.clearItems();
 
       let arr = this._sortList(optionElements);
-      arr.forEach(((element) => this.select.add(element)).bind(this));
+      arr.forEach(((element) => this._getSelectElement().add(element)).bind(this));
     }
 
 
@@ -266,7 +266,7 @@ class DgtSelect extends HTMLElement {
         this.clearItems();
       }
 
-      optionElements.forEach(((element) => this.select.add(element)).bind(this));
+      optionElements.forEach(((element) => this._getSelectElement().add(element)).bind(this));
 
       this._fireEvent('addItems', newItems);
     }
@@ -299,11 +299,11 @@ class DgtSelect extends HTMLElement {
     }
 
     removeItem(index) {
-      this.select.remove(index);
+      this._getSelectElement().remove(index);
     }
 
     clearItems() {
-      this.select.innerHTML = '';
+      this._getSelectElement().innerHTML = '';
     }
 
     setSelectedItems(items) {
@@ -349,21 +349,21 @@ class DgtSelect extends HTMLElement {
     }
 
     getSelectedItems() {
-      let selectedOptions =  Array.from(this.select.querySelectorAll('option:checked'));
+      let selectedOptions =  Array.from(this._getSelectElement().querySelectorAll('option:checked'));
       return selectedOptions.map(function(option){
         return option.rawValue;
       });
     }
 
     getItems() {
-      let options =  Array.from(this.select.querySelectorAll('option'));
+      let options =  Array.from(this._getSelectElement().querySelectorAll('option'));
       return options.map(function(option){
         return option.rawValue;
       });
     }
 
     getAvailableItems() {
-      let options = Array.from(this.select.querySelectorAll('option:not([disabled])'));
+      let options = Array.from(this._getSelectElement().querySelectorAll('option:not([disabled])'));
       return options.map(function(option){
         return option.rawValue;
       });
@@ -380,6 +380,13 @@ class DgtSelect extends HTMLElement {
         this.idSelect = (this.id + 'select') || (Math.random()*1000+1);
         this.select = this.shadowRoot.querySelector('select');
         this.select.setAttribute('id', this.idSelect);
+    }
+
+    _getSelectElement(){
+      if(!this.select){
+        this.select  = this.shadowRoot.querySelector('select');
+      }
+      return this.select;
     }
 
     _loadDeclaredOptions() {
@@ -399,7 +406,7 @@ class DgtSelect extends HTMLElement {
         //this._loadDeclaredOptions();//Verificar
 
         // quickfix bug tag select height firefox
-        this.select.style.minHeight = this.select.offsetHeight;
+        this._getSelectElement().style.minHeight = this._getSelectElement().offsetHeight;
     }
 
     attributeChangedCallback(){
@@ -413,16 +420,16 @@ class DgtSelect extends HTMLElement {
     }
 
     _populateSelectProperties(){
-        this._addOrRemoveProperty('autofocus', this.autofocus, this.select);
-        this._addOrRemoveProperty('disabled', this.disabled, this.select);
-        this._addOrRemoveProperty('multiple', this.multiple, this.select);
-        this._addOrRemoveProperty('required', this.required, this.select);
-        this._addOrRemoveProperty('search-bar', this.searchBar, this.select);
-        this._addOrRemoveProperty('size', this.size, this.select);
-        this._addOrRemoveProperty('name', this.name, this.select);
-        this._addOrRemoveProperty('sort', this.sort, this.select);
-        this.select.setAttribute('value-name', this.valueName);
-        this.select.setAttribute('label-name', this.labelName);
+        this._addOrRemoveProperty('autofocus', this.autofocus, this._getSelectElement());
+        this._addOrRemoveProperty('disabled', this.disabled, this._getSelectElement());
+        this._addOrRemoveProperty('multiple', this.multiple, this._getSelectElement());
+        this._addOrRemoveProperty('required', this.required, this._getSelectElement());
+        this._addOrRemoveProperty('search-bar', this.searchBar, this._getSelectElement());
+        this._addOrRemoveProperty('size', this.size, this._getSelectElement());
+        this._addOrRemoveProperty('name', this.name, this._getSelectElement());
+        this._addOrRemoveProperty('sort', this.sort, this._getSelectElement());
+        this._getSelectElement().setAttribute('value-name', this.valueName);
+        this._getSelectElement().setAttribute('label-name', this.labelName);
     }
 
     _populateSearchProperties(){
@@ -446,7 +453,7 @@ class DgtSelect extends HTMLElement {
 
     validate() {
       let error = "";
-      if(this.select.required){
+      if(this._getSelectElement().required){
         this.classList.remove('invalid');
         this.removeAttribute('dgterror');
         if(this.getSelectedItems().length == 0){
@@ -477,7 +484,7 @@ class DgtSelect extends HTMLElement {
     }
 
     getValues() {
-      let selectedOptions = this.select.querySelectorAll('option:checked');
+      let selectedOptions = this._getSelectElement().querySelectorAll('option:checked');
 
       if(this.multiple){
         return Array.from(selectedOptions)
@@ -492,7 +499,7 @@ class DgtSelect extends HTMLElement {
 
     getSelectedIndexes() {
       let selectedIndex = [];
-      let selectedOptions = this.select.querySelectorAll('option:checked');
+      let selectedOptions = this._getSelectElement().querySelectorAll('option:checked');
       selectedOptions.forEach(selected => selectedIndex.push(selected.index));
       return selectedIndex;
     }
@@ -508,19 +515,19 @@ class DgtSelect extends HTMLElement {
     }
 
     getVisibleItemsIndexes() {
-      let options = Array.from(this.select.querySelectorAll('option:not([hidden])'));
+      let options = Array.from(this._getSelectElement().querySelectorAll('option:not([hidden])'));
       return options.map(option=> {return option.index;});
     }
 
     _fireEvent(eventName, eventParam){
-      this.dispatchEvent(new CustomEvent(eventName, eventParam));
+      this.dispatchEvent(new CustomEvent(eventName, {detail: eventParam}));
     }
 
     _createTemplate(){
-        this._createErrorTemplate();
-        this._createSelectTemplate();
-        this._createSearchTemplate();
-        this._createLabelOptionsTemplate();
+      this._createErrorTemplate();
+      this._createSelectTemplate();
+      this._createSearchTemplate();
+      this._createLabelOptionsTemplate();
     }
 
     _createErrorTemplate(){

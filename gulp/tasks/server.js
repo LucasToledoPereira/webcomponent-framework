@@ -1,11 +1,34 @@
 `use strict`;
 
 const gulp = require('gulp');
-const browserSync = require(`browser-sync`);
+const browserSync = require(`browser-sync`).create();
 const path = require(`path`);
 const conf = require(`../conf`);
+const wiredep = require(`wiredep`).stream;
 
-gulp.task(`serve`, done => {
+const plugins = require(`gulp-load-plugins`)({
+    pattern: [`gulp-autoprefixer`, `gulp-concat`, `gulp-if`, `gulp-inject`, `gulp-rename`, `gulp-sass`, `gulp-sourcemaps`]
+});
+
+
+gulp.task('browserSync', function() {
+    browserSync.init({
+        server: {
+            baseDir: conf.paths.tmp
+        },
+    })
+})
+
+
+gulp.task('watch',function(){
+  gulp.watch(path.join(conf.paths.src, `/{,**/}*.{scss,sass}`), ['styles']);
+  //gulp.watch(path.join(conf.paths.src, `/{,**/}*.{html}`));
+  gulp.watch(path.join(conf.paths.src, `/{,**/}*.{js}`), ['script']);
+     //Other watchers
+});
+
+
+gulp.task(`serve`, ['watch', 'styles', 'script'], done => {
     browserSyncInit([path.join(conf.paths.tmp, `/serve`), conf.paths.src], conf.backend.local, true, null, done);
 });
 

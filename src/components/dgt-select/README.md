@@ -35,68 +35,36 @@ This component implements a HTML Select and Options using Polymer Webcomponents
 * **setSelectedIndexes** - *Params: indexes (Array | Number)* - Used to select options by indexes
 * **getVisibleItemsIndexes** - *Params: NONE* - Used to get indexes of available options
 
+### Events
+* **change** - Fired when the selection change
+    * *Parameters:*
+        - ```evt``` : ```Event``` : Object that has a property called ```detail```, it contains an Object with the changed flag.
+* **selectItem** - Fired when an item is selected
+    * *Parameters:*
+        - ```evt``` : ```Event``` : Object that has a property called ```detail```, it contains the selected item. This item can be a String or an Object.
+* **deselectItem** - Fired when an item is deselected
+    * *Parameters:*
+        - ```evt``` : ```Event``` : Object that has a property called ```detail```, it contains the deselected itemo. This item can be a String or an Object.
+* **addItems** - Fired when add new items to select
+    * *Parameters:*
+        - ```evt``` : ```Event``` : Object that has a property called ```detail```, it contains an Array with added items.
+* **removeItems** - Fired when remove items
+    * *Parameters:*
+        - ```evt``` : ```Event``` : Object that has a property called ```detail```, it contains an Array with removed items.
+
 
 ### Usage
 You can use this component like the flowing code:
 
 ```html
-<dom-module id="my-element">
-    <template>
+  <dgt-select  label="meu select" value-name="pessoa.id" label-name="pessoa.nome" size='4' multiple id="ex3"></dgt-select>
+  <button id="addItems" class="btn btn-sm style-scope" >addItems</button>
 
-        <!-- Component DGT-SELECT-->
-        <dgt-select  label="meu select" value-name="pessoa.id" label-name="pessoa.nome" size='4' multiple id="ex3"></dgt-select>
-
-        <!--Buttons with actions over component-->
-        <button on-click="addItems" class="btn btn-sm style-scope" >addItems</button>
-        <button on-click="removeItems" class="btn btn-sm style-scope">removeItems</button>
-        <button on-click="clearItems" class="btn btn-sm style-scope" >clearItems</button>
-        <button on-click="setSelectedItems" class="btn btn-sm style-scope" >setSelectedItem</button>
-        <button on-click="setItems" class="btn btn-sm style-scope" >setItems</button>
-
-    </template>
-</dom-module>
-  
-
-<script>
-    class MyElement extends Polymer.Element {
-        static get is() { return 'my-element'; }
-
-        static get properties() {
-            return {}
-        }
-
-        constructor() {
-            super();
-        }
-
-        getComponentSelect(id) {
-            return this.shadowRoot.getElementById(id);
-        }
-
-        addItems(){
-            this.getComponentSelect('ex3').addItems([/*my items*/]);
-        }
-
-        removeItems() {
-            this.getComponentSelect('ex3').removeItems([/*my items*/]);
-        }
-
-        clearItems() {
-            this.getComponentSelect('ex3').clearItems();
-        }
-
-        setSelectedItems() {
-            this.getComponentSelect('ex3').setSelectedItems(/*my items*/);
-        }
-
-        setItems(){
-            this.getComponentSelect('ex3').setItems([/*my items*/])
-        }
-    }
-
-    customElements.define(SelectDemo.is, SelectDemo);
-</script>
-
+  <script>
+      this.shadowRoot.getElementById(addItems).addEventListener('click', (evt) => {
+        this.shadowRoot.getElementById('ex3').addItems(['teste']);
+      });
+  </script>
 ```
 
 ### Authors

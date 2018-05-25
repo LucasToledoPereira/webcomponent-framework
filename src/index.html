@@ -2,12 +2,11 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Webpack First Test</title>
-		<script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-		<!-- script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script -->
-		<link rel="stylesheet" href="src/components/dgt-style/css/dgt-style.css">
-		<link rel="stylesheet" href="src/components/dgt-select/css/dgt-select.css">
-		<link rel="import" href="src/demos/dgt-select-demo.html">
+		<title>WebComponents Framework</title>
+		<link rel="stylesheet" href="./styles/index.css" type="text/css">
+		<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+		<script src="../bower_components/webcomponentsjs/custom-elements-es5-adapter.js"></script>	
+		<script src="./scripts/framework.js"></script>
 		<style>
 			body {
 				font-family: "Lato", sans-serif;
@@ -65,7 +64,7 @@
 		<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>		
 		<div class="container">
 			<dgt-select-demo id="demo-select" hidden></dgt-select-demo>
-		</div>	
+		</div>
 	</body>
 	<script>
 		function openNav() {
