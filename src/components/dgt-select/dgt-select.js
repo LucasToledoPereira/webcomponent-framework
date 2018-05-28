@@ -1,8 +1,6 @@
 class DgtSelect extends HTMLElement {
     constructor() { 
       super();
-      this.attachShadow({mode: 'open'});
-      this._createTemplate();
     } 
 
     static get is() { return 'dgt-select'; }
@@ -111,15 +109,6 @@ class DgtSelect extends HTMLElement {
         this.setAttribute('dgterror', val);
     }
 
-
-    static get properties() {
-      return {
-        sort: {
-          observer: '_handlerSort'
-        }
-      }
-    }
-
     _isInternetExplorer() {
       return (navigator.appName == 'Microsoft Internet Explorer')
               || ((navigator.appName == 'Netscape') && (new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})").exec(navigator.userAgent) != null));
@@ -152,7 +141,7 @@ class DgtSelect extends HTMLElement {
     _handleChangeSelect(evt) {
       this._fireEvent('change', {changed: true});
       if(evt.target.selectedIndex >= 0) {
-        let options = this.shadowRoot.querySelectorAll('option');
+        let options = this.querySelectorAll('option');
         this._fireEvent('selectItem', options[evt.target.selectedIndex].rawValue);
       }
     }
@@ -178,13 +167,13 @@ class DgtSelect extends HTMLElement {
     }
 
     _doFilter(evt) {
-        let searchTerm = this.shadowRoot.querySelector('input').value;
+        let searchTerm = this.querySelector('input').value;
         this.filter(searchTerm);
     }
 
     filter(searchTerm) {
       searchTerm = searchTerm.toLowerCase();
-      let elOptions = this.shadowRoot.querySelectorAll('select option');
+      let elOptions = this.querySelectorAll('select option');
 
       elOptions.forEach(el => {
         if(el.text.toLowerCase().indexOf(searchTerm) === -1){
@@ -230,15 +219,16 @@ class DgtSelect extends HTMLElement {
         });
       }
 
-      this.sort =  (new Function('return '+  this.sort))() ;
-      if(typeof this.sort != "function"){
+      let sortFunction =  (new Function('return '+  this.sort))() ;
+      this.sort = sortFunction;
+      if(typeof sortFunction != "function"){
         throw new Error('Please check String function');
       }
-      return toSort.sort(this.sort);
+      return toSort.sort(sortFunction);
     }
 
     _handlerSort() {
-      let optionElements = this._moveOptionToArray(this.shadowRoot.querySelectorAll('option'));
+      let optionElements = this._moveOptionToArray(this.querySelectorAll('option'));
       if(optionElements.length == 0){
         return;
       }
@@ -261,7 +251,7 @@ class DgtSelect extends HTMLElement {
       let optionElements = this._createOptions(newItems);
 
       if(this.sort){
-        optionElements = this._moveOptionToArray(this.shadowRoot.querySelectorAll('option')).concat(optionElements);
+        optionElements = this._moveOptionToArray(this.querySelectorAll('option')).concat(optionElements);
         optionElements = this._sortList(optionElements);
         this.clearItems();
       }
@@ -281,7 +271,7 @@ class DgtSelect extends HTMLElement {
         items = [items];
       }
       let itemsRemoved = [];
-      let elOptions = this.shadowRoot.querySelectorAll('select option');
+      let elOptions = this.querySelectorAll('select option');
 
       items.forEach(((item) => {
         let value = this._getAttrib(item, this.valueName);
@@ -311,7 +301,7 @@ class DgtSelect extends HTMLElement {
         items = [items];
       }
 
-      let elOptions = this.shadowRoot.querySelectorAll('select option');
+      let elOptions = this.querySelectorAll('select option');
 
       items.forEach(((item) => {
         let value = this._getAttrib(item, this.valueName),
@@ -335,7 +325,7 @@ class DgtSelect extends HTMLElement {
         items = [items];
       }
 
-      let elOptions = this.shadowRoot.querySelectorAll('select option');
+      let elOptions = this.querySelectorAll('select option');
 
       items.forEach((item => {
         let value = this._getAttrib(item, this.valueName);
@@ -378,19 +368,19 @@ class DgtSelect extends HTMLElement {
 
     _createDomReferences() {
         this.idSelect = (this.id + 'select') || (Math.random()*1000+1);
-        this.select = this.shadowRoot.querySelector('select');
+        this.select = this.querySelector('select');
         this.select.setAttribute('id', this.idSelect);
     }
 
     _getSelectElement(){
       if(!this.select){
-        this.select  = this.shadowRoot.querySelector('select');
+        this.select  = this.querySelector('select');
       }
       return this.select;
     }
 
     _loadDeclaredOptions() {
-        let declaredOptionsWrapper = this.shadowRoot.getElementById('declaredOptionsWrapper');
+        let declaredOptionsWrapper = this.querySelector('#declaredOptionsWrapper');
         let options = Array.from(declaredOptionsWrapper.children);
         declaredOptionsWrapper.parentNode.removeChild(declaredOptionsWrapper);
         declaredOptionsWrapper.remove();
@@ -398,16 +388,19 @@ class DgtSelect extends HTMLElement {
     }
 
     connectedCallback() {
-        this._createDomReferences();
-        this.isIE = this._isInternetExplorer();
-        this.valueName = this.valueName || "";
-        this.labelName = this.labelName || "";
-        this._populateProperties();
-        //this._loadDeclaredOptions();//Verificar
+      this._createTemplate();
+      this._createDomReferences();
+      this.isIE = this._isInternetExplorer();
+      this.valueName = this.valueName || "";
+      this.labelName = this.labelName || "";
+      this._populateProperties();
+      //this._loadDeclaredOptions();//Verificar
 
-        // quickfix bug tag select height firefox
-        this._getSelectElement().style.minHeight = this._getSelectElement().offsetHeight;
+      // quickfix bug tag select height firefox
+      this._getSelectElement().style.minHeight = this._getSelectElement().offsetHeight;
     }
+
+    static get observedAttributes() {return ['id', 'label', 'name', 'sort', 'searchBar', 'valueName', 'labelName', 'multiple', 'disabled', 'autofocus', 'required', 'size', 'dgterror']; }
 
     attributeChangedCallback(){
         this._populateProperties();
@@ -417,6 +410,7 @@ class DgtSelect extends HTMLElement {
         this._populateSelectProperties();
         this._populateSearchProperties();
         this._populateLabelProperties();
+        this._handlerSort();
     }
 
     _populateSelectProperties(){
@@ -433,15 +427,15 @@ class DgtSelect extends HTMLElement {
     }
 
     _populateSearchProperties(){
-        let searchTemplate = this.shadowRoot.getElementById('searchIf');
-        let searchInput = this.shadowRoot.getElementById('inputSearch');
+        let searchDiv = this.querySelector('#searchIf');
+        let searchInput = this.querySelector('#inputSearch');
 
         this._addOrRemoveProperty('disabled', this.disabled, searchInput);
-        searchTemplate.style.display = this.searchBar ? 'block' : 'none';
+        this._addOrRemoveProperty('hidden', !this.searchBar, searchDiv);
     }
 
     _populateLabelProperties(){
-        let label = this.shadowRoot.querySelector('label');
+        let label = this.querySelector('label');
         label.setAttribute('for', this.idSelect);
         label.innerHTML = this.label || '';
     }
@@ -471,7 +465,7 @@ class DgtSelect extends HTMLElement {
     }
 
     clear() {
-      let elOptions = this.shadowRoot.querySelectorAll('select option');
+      let elOptions = this.querySelectorAll('select option');
       elOptions.forEach(el => el.selected = false);
 
       this.classList.remove('invalid');
@@ -509,7 +503,7 @@ class DgtSelect extends HTMLElement {
           indexes = [indexes];
       }
 
-      let elOptions = this.shadowRoot.querySelectorAll('select option');
+      let elOptions = this.querySelectorAll('select option');
       //let elOptions = this.querySelectorAll('select option');
       elOptions.forEach(el => el.selected = (indexes.indexOf !== -1));            
     }
@@ -539,22 +533,21 @@ class DgtSelect extends HTMLElement {
         div.innerHTML = '';
 
         template.appendChild(div);
-        this.shadowRoot.appendChild(template);
+        this.appendChild(template);
     }
 
     _createSelectTemplate(){
         let select = document.createElement('select');
         select.setAttribute('class', 'input-field');
         select.addEventListener('change', (evt) => this._handleChangeSelect(evt));
-        this.shadowRoot.appendChild(select);
+        this.appendChild(select);
     }
 
     _createSearchTemplate() {
-        let template = document.createElement('template');
-        template.setAttribute('id', 'searchIf');
-
         let div = document.createElement('div');
         div.setAttribute('class', 'search-bar');
+        div.setAttribute('hidden', '');
+        div.setAttribute('id', 'searchIf');
 
         let input = document.createElement('input');
         input.setAttribute('id', 'inputSearch');
@@ -564,9 +557,8 @@ class DgtSelect extends HTMLElement {
         input.addEventListener('input', (evt) => this._doFilter(evt));
         
         div.appendChild(input);
-        template.appendChild(div);
 
-        this.shadowRoot.appendChild(template);
+        this.appendChild(div);
     }
 
     _createLabelOptionsTemplate(){
@@ -582,8 +574,8 @@ class DgtSelect extends HTMLElement {
 
         div.appendChild(content);
 
-        this.shadowRoot.appendChild(label);
-        this.shadowRoot.appendChild(div);
+        this.appendChild(label);
+        this.appendChild(div);
     }
   }
   
