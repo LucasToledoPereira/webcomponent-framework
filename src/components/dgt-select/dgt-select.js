@@ -403,7 +403,9 @@ class DgtSelect extends HTMLElement {
     static get observedAttributes() {return ['id', 'label', 'name', 'sort', 'searchBar', 'valueName', 'labelName', 'multiple', 'disabled', 'autofocus', 'required', 'size', 'dgterror']; }
 
     attributeChangedCallback(){
-        this._populateProperties();
+      if(this._getSelectElement()){
+        this._populateProperties();        
+      }
     }
 
     _populateProperties(){
