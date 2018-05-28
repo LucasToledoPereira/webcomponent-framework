@@ -119,11 +119,10 @@ class DgtSelect extends HTMLElement {
       options.forEach(((option) => {
         let optionElement;
         if (option instanceof Node) {
-          if (option.tagName !== 'OPTION') {
-              throw new Error("Can't use tags other than <option> inside dgt-select");
-          }
-          optionElement = option;
-          optionElement.rawValue = option.value || option.innerText;
+          if (option.tagName === 'OPTION') {
+            optionElement = option;
+            optionElement.rawValue = option.value || option.innerText;
+          }     
         } else {
           optionElement = document.createElement('option');
           optionElement.innerText = this._getAttrib(option, this.labelName);
@@ -394,7 +393,7 @@ class DgtSelect extends HTMLElement {
       this.valueName = this.valueName || "";
       this.labelName = this.labelName || "";
       this._populateProperties();
-      //this._loadDeclaredOptions();//Verificar
+      this._loadDeclaredOptions();
 
       // quickfix bug tag select height firefox
       this._getSelectElement().style.minHeight = this._getSelectElement().offsetHeight;
@@ -571,8 +570,8 @@ class DgtSelect extends HTMLElement {
         let div = document.createElement('div');
         div.setAttribute('id', 'declaredOptionsWrapper');
 
-        let content = document.createElement('content');
-        content.setAttribute('select', 'option');
+        let content = document.createElement('slot');
+        content.setAttribute('slot', 'option');
 
         div.appendChild(content);
 
