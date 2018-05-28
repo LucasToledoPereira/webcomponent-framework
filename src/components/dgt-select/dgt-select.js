@@ -130,8 +130,8 @@ class DgtSelect extends HTMLElement {
           optionElement.rawValue = option;
         }
 
-      optionElement.addEventListener('click', this._handleOptionClick.bind(this));
-      optionElements.push(optionElement);
+        optionElement && optionElement.addEventListener('click', this._handleOptionClick.bind(this));
+        optionElement && optionElements.push(optionElement);
       }).bind(this));
 
       return optionElements;
@@ -401,17 +401,23 @@ class DgtSelect extends HTMLElement {
 
     static get observedAttributes() {return ['id', 'label', 'name', 'sort', 'searchBar', 'valueName', 'labelName', 'multiple', 'disabled', 'autofocus', 'required', 'size', 'dgterror']; }
 
-    attributeChangedCallback(){
+    attributeChangedCallback(name){
       if(this._getSelectElement()){
+        this._executeIfChanged(name, 'sort', this._handlerSort);
         this._populateProperties();        
       }
+    }
+
+    _executeIfChanged(argName, name, fn){
+      let isEqualName = argName === name;
+      isEqualName && fn();
     }
 
     _populateProperties(){
         this._populateSelectProperties();
         this._populateSearchProperties();
         this._populateLabelProperties();
-        this._handlerSort();
+        this._populateErrorProperties();
     }
 
     _populateSelectProperties(){
@@ -439,6 +445,11 @@ class DgtSelect extends HTMLElement {
         let label = this.querySelector('label');
         label.setAttribute('for', this.idSelect);
         label.innerHTML = this.label || '';
+    }
+
+    _populateErrorProperties(){
+      this._addOrRemoveProperty('hidden', !this.dgterror, this.querySelector("#error_div"));
+      this.querySelector("#error_div").innerText = this.dgterror;
     }
 
     _addOrRemoveProperty(name, value, elem){
@@ -505,7 +516,6 @@ class DgtSelect extends HTMLElement {
       }
 
       let elOptions = this.querySelectorAll('select option');
-      //let elOptions = this.querySelectorAll('select option');
       elOptions.forEach(el => el.selected = (indexes.indexOf !== -1));            
     }
 
@@ -526,15 +536,12 @@ class DgtSelect extends HTMLElement {
     }
 
     _createErrorTemplate(){
-        let template = document.createElement('template');
-        template.setAttribute('style', 'display:none');
-
         let div = document.createElement('div');
         div.setAttribute('class', 'dgt-error-msg');
+        div.setAttribute('hidden', '');
+        div.setAttribute('id', 'error_div');
         div.innerHTML = '';
-
-        template.appendChild(div);
-        this.appendChild(template);
+        this.appendChild(div);
     }
 
     _createSelectTemplate(){
