@@ -6,8 +6,35 @@ const gulp = require(`gulp`);
 const path = require(`path`);
 const wiredep = require(`wiredep`).stream;
 const csso = require('gulp-csso');
+const dest = require('gulp-dest');
 const plugins = require(`gulp-load-plugins`)({
     pattern: [`gulp-autoprefixer`, `gulp-concat`, `gulp-if`, `gulp-inject`, `gulp-rename`, `gulp-sass`, `gulp-sourcemaps`]
+});
+
+
+gulp.task(`styles:separated`, () => {
+  return gulp.src([path.join(conf.paths.src, `/{,**/}*.{scss,sass}`), path.join(`!` + conf.paths.src, `/index.scss`)])
+    .pipe(wiredep(Object.assign({}, conf.wiredep)))
+    .pipe(plugins.sourcemaps.init({largeFile: true}))  
+    .pipe(plugins.sass())
+    .pipe(plugins.autoprefixer())
+    .pipe(plugins.sourcemaps.write())
+    .pipe(dest('styles/:name.css'))
+    .pipe(gulp.dest(path.join(conf.paths.tmp, `serve/styles/`)))
+    .pipe(browserSync.reload({ stream: true }));
+});
+
+gulp.task(`styles:separated:build`, () => {
+  return gulp.src([path.join(conf.paths.src, `/{,**/}*.{scss,sass}`), path.join(`!` + conf.paths.src, `/index.scss`)])
+    .pipe(wiredep(Object.assign({}, conf.wiredep)))
+    .pipe(plugins.sourcemaps.init({largeFile: true}))  
+    .pipe(plugins.sass())
+    .pipe(plugins.autoprefixer())
+    .pipe(plugins.sourcemaps.write())
+    .pipe(csso())
+    .pipe(dest('styles/:name.css'))
+    .pipe(gulp.dest(path.join(conf.paths.dist, `styles/`)))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 gulp.task(`styles`, () => {

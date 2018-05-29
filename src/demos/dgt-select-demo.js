@@ -1,6 +1,7 @@
 class SelectDemo extends HTMLElement {
   constructor() { 
     super();
+    this.attachShadow({mode:'open'});
   }
 
   static get is() { return 'dgt-select-demo'; }
@@ -38,7 +39,7 @@ class SelectDemo extends HTMLElement {
   }
 
   getSelect(id) {
-    return this.querySelector('#' + id);
+    return this._getShadowElement().querySelector('#' + id);
   }
 
   getItem() {
@@ -77,17 +78,17 @@ class SelectDemo extends HTMLElement {
   }
 
   _addEventListenersToEx1(){
-    this.querySelector('#addItems').addEventListener('click', (evt) => this.addItems(evt));
-    this.querySelector('#removeItems').addEventListener('click', (evt) => this.removeItems(evt));
-    this.querySelector('#clearItems').addEventListener('click', (evt) => this.clearItems(evt));
-    this.querySelector('#setSelectedItems').addEventListener('click', (evt) => this.setSelectedItems(evt));
-    this.querySelector('#setItems').addEventListener('click', (evt) => this.setItems(evt));
-    this.querySelector('#disableItems').addEventListener('click', (evt) => this.disableItems(evt));
+    this._getShadowElement().querySelector('#addItems').addEventListener('click', (evt) => this.addItems(evt));
+    this._getShadowElement().querySelector('#removeItems').addEventListener('click', (evt) => this.removeItems(evt));
+    this._getShadowElement().querySelector('#clearItems').addEventListener('click', (evt) => this.clearItems(evt));
+    this._getShadowElement().querySelector('#setSelectedItems').addEventListener('click', (evt) => this.setSelectedItems(evt));
+    this._getShadowElement().querySelector('#setItems').addEventListener('click', (evt) => this.setItems(evt));
+    this._getShadowElement().querySelector('#disableItems').addEventListener('click', (evt) => this.disableItems(evt));
   }
 
   _addEventListenersToEx2() {
     let dgtSelect = this.getSelect('ex2');
-    let toast = this.querySelector('#toast');
+    let toast = this._getShadowElement().querySelector('#toast');
 
     dgtSelect.addEventListener('addItems', function (evt) {
       toast.textContent = "Adicionado: " +JSON.stringify(evt.detail)
@@ -119,15 +120,15 @@ class SelectDemo extends HTMLElement {
 
     });
 
-    this.querySelector('#addObjItems').addEventListener('click', (evt) => this.addObjItems(evt));
-    this.querySelector('#removeObjItems').addEventListener('click', (evt) => this.removeObjItems(evt));
-    this.querySelector('#clearObjItems').addEventListener('click', (evt) => this.clearObjItems(evt));
-    this.querySelector('#setSelectedObjItems').addEventListener('click', (evt) => this.setSelectedObjItems(evt));
-    this.querySelector('#setObjItems').addEventListener('click', (evt) => this.setObjItems(evt));
+    this._getShadowElement().querySelector('#addObjItems').addEventListener('click', (evt) => this.addObjItems(evt));
+    this._getShadowElement().querySelector('#removeObjItems').addEventListener('click', (evt) => this.removeObjItems(evt));
+    this._getShadowElement().querySelector('#clearObjItems').addEventListener('click', (evt) => this.clearObjItems(evt));
+    this._getShadowElement().querySelector('#setSelectedObjItems').addEventListener('click', (evt) => this.setSelectedObjItems(evt));
+    this._getShadowElement().querySelector('#setObjItems').addEventListener('click', (evt) => this.setObjItems(evt));
   }
 
   _addEventListenersToEx5(){
-    this.querySelector('#submit').addEventListener('click', (evt) => this.submit(evt));
+    this._getShadowElement().querySelector('#submit').addEventListener('click', (evt) => this.submit(evt));
   }
 
   getObject() {
@@ -239,12 +240,12 @@ class SelectDemo extends HTMLElement {
     });
 
 
-    this.querySelector('#addObjItemsOpen').addEventListener('click', (evt) => this.addObjItemsOpen(evt));
-    this.querySelector('#removeObjItemsOpen').addEventListener('click', (evt) => this.removeObjItemsOpen(evt));
-    this.querySelector('#clearObjItemsOpen').addEventListener('click', (evt) => this.clearObjItemsOpen(evt));
-    this.querySelector('#setSelectedItemsOpen').addEventListener('click', (evt) => this.setSelectedItemsOpen(evt));
-    this.querySelector('#setObjItemsOpen').addEventListener('click', (evt) => this.setObjItemsOpen(evt));
-    this.querySelector('#sort-object-size').addEventListener('click', (evt) => this.sortObjItemsOpen(evt));
+    this._getShadowElement().querySelector('#addObjItemsOpen').addEventListener('click', (evt) => this.addObjItemsOpen(evt));
+    this._getShadowElement().querySelector('#removeObjItemsOpen').addEventListener('click', (evt) => this.removeObjItemsOpen(evt));
+    this._getShadowElement().querySelector('#clearObjItemsOpen').addEventListener('click', (evt) => this.clearObjItemsOpen(evt));
+    this._getShadowElement().querySelector('#setSelectedItemsOpen').addEventListener('click', (evt) => this.setSelectedItemsOpen(evt));
+    this._getShadowElement().querySelector('#setObjItemsOpen').addEventListener('click', (evt) => this.setObjItemsOpen(evt));
+    this._getShadowElement().querySelector('#sort-object-size').addEventListener('click', (evt) => this.sortObjItemsOpen(evt));
   }
 
   getObjectOpen() {
@@ -304,7 +305,7 @@ class SelectDemo extends HTMLElement {
       this.possibilitieCount = 0;
     }
     this.getSelect('ex3').sort = this.getSortPossibilities()[this.possibilitieCount].ordernation;
-    this.querySelector('#sort-object-size').textContent = this.getSortPossibilities()[this.possibilitieCount].label
+    this._getShadowElement().querySelector('#sort-object-size').textContent = this.getSortPossibilities()[this.possibilitieCount].label
     this.possibilitieCount++;
   }
 
@@ -322,7 +323,8 @@ class SelectDemo extends HTMLElement {
   }
 
   connectedCallback(){
-    this.innerHTML = `<h3 slot="title">Select Basic Demo</h3>
+    this._getShadowElement().innerHTML = `<link rel="stylesheet" href="./styles/dgt-style.css" type="text/css">
+                      <h3 slot="title">Select Basic Demo</h3>
                       <div class="container" slot="component">
                         <div class="mar-bot">
                           
@@ -376,6 +378,10 @@ class SelectDemo extends HTMLElement {
     this._addEventListenersToEx3();
     this._addEventListenersToEx5();
     this._populateItems();
+  }
+
+  _getShadowElement(){
+    return this.shadowRoot || this;
   }
 
 }

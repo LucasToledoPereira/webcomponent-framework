@@ -21,14 +21,14 @@ gulp.task('browserSync', function() {
 
 
 gulp.task('watch',function(){
-  gulp.watch(path.join(conf.paths.src, `/{,**/}*.{scss,sass}`), ['styles']);
+  gulp.watch(path.join(conf.paths.src, `/{,**/}*.{scss,sass}`), ['styles:separated']);
   //gulp.watch(path.join(conf.paths.src, `/{,**/}*.{html}`));
   gulp.watch(path.join(conf.paths.src, `/{,**/}*.{js}`), ['script']);
      //Other watchers
 });
 
 
-gulp.task(`serve`, ['watch', 'styles', 'script'], done => {
+gulp.task(`serve`, ['watch', 'styles:separated', 'script', 'fonts'], done => {
     browserSyncInit([path.join(conf.paths.tmp, `/serve`), conf.paths.src], conf.backend.local, true, null, done);
 });
 

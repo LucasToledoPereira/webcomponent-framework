@@ -4,15 +4,15 @@
 @import '../vendor/normalize.scss';
 
 // Partials
-@import 'partials/reset';
-@import 'partials/general';
-@import 'partials/typography';
-@import 'partials/form-elements';
-@import 'partials/grid';
-@import 'partials/utility-classes';
-@import 'partials/buttons';
-@import 'partials/tables';
-@import 'partials/loading';
+@import 'partials/reset.scss';
+@import 'partials/general.scss';
+@import 'partials/typography.scss';
+@import 'partials/form-elements.scss';
+@import 'partials/grid.scss';
+@import 'partials/utility-classes.scss';
+@import 'partials/buttons.scss';
+@import 'partials/tables.scss';
+@import 'partials/loading.scss';
 
 // Icons
 @import '../vendor/material-design-icons/scss/materialdesignicons.scss';

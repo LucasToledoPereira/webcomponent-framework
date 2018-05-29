@@ -4,7 +4,7 @@ const conf = require(`../conf`);
 const gulp = require(`gulp`);
 const path = require(`path`);
 const minify = require('gulp-minify');
-const mainBowerFiles = require(`main-bower-files`);
+const dest = require('gulp-dest');
 const plugins = require(`gulp-load-plugins`)({
     pattern: [
         'gulp-minify-html', `gulp-flatten`, `gulp-filter`
@@ -31,16 +31,7 @@ gulp.task('html', function() {
       quotes: true,
       conditionals: true
     }))
-    .pipe(gulp.dest(conf.paths.dist));
-});
-
-gulp.task(`fonts`, () => {
-  // only applied on fonts from bower dependencies
-  // custom fonts are handled by the "other" task
-  return gulp.src(mainBowerFiles())
-    .pipe(plugins.filter(`**/*.{eot,svg,ttf,woff,woff2}`))
-    .pipe(plugins.flatten())
-    .pipe(gulp.dest(path.join(conf.paths.dist, `/fonts/`)));
+    .pipe(gulp.dest(path.join(conf.paths.dist, `html/`)));
 });
 
 gulp.task(`other`, () => {
@@ -55,4 +46,4 @@ gulp.task(`other`, () => {
     .pipe(gulp.dest(path.join(conf.paths.dist, `/`)));
 });
 
-gulp.task('build', ['script', 'minify', 'styles:build', 'html', 'fonts', 'other', 'bower']);
+gulp.task('build', ['script', 'minify', 'styles:separated:build', 'html', 'fonts:build']);
