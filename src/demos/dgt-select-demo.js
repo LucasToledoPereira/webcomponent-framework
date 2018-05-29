@@ -198,7 +198,7 @@ class SelectDemo extends HTMLElement {
 
   _addEventListenersToEx3() {
     let dgtSelect = this.getSelect('ex3');
-    let toast = this.querySelector('#toast');
+    let toast = this._getShadowElement().querySelector('#toast');
 
     dgtSelect.addEventListener('addItems', function (evt) {
       toast.textContent = "Adicionado: " +JSON.stringify(evt.detail)
