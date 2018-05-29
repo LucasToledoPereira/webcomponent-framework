@@ -46,4 +46,4 @@ gulp.task(`other`, () => {
     .pipe(gulp.dest(path.join(conf.paths.dist, `/`)));
 });
 
-gulp.task('build', ['script', 'minify', 'styles:separated:build', 'html', 'fonts:build']);
+gulp.task('build', ['script:build', 'styles:separated:build', 'html', 'fonts:build']);
