@@ -192,7 +192,7 @@ class DgtSelect extends HTMLElement {
             let span = el.parentElement;
             if(span.tagName === 'SPAN'){
               this._getSelectElement().insertBefore(el, span);
-              span.remove();
+              span.removeNode();
             }
           }
         }
@@ -382,7 +382,11 @@ class DgtSelect extends HTMLElement {
         let declaredOptionsWrapper = this.querySelector('#declaredOptionsWrapper');
         let options = Array.from(declaredOptionsWrapper.children);
         declaredOptionsWrapper.parentNode.removeChild(declaredOptionsWrapper);
-        declaredOptionsWrapper.remove();
+        if(this.isIE){
+          declaredOptionsWrapper.removeNode();
+        } else {
+          declaredOptionsWrapper.remove();   
+        }
         this.addItems(options);
     }
 
