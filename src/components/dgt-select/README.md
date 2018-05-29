@@ -61,8 +61,8 @@ You can use this component like the flowing code:
   <button id="addItems" class="btn btn-sm style-scope" >addItems</button>
 
   <script>
-      this.shadowRoot.getElementById(addItems).addEventListener('click', (evt) => {
-        this.shadowRoot.getElementById('ex3').addItems(['teste']);
+      document.getElementById(addItems).addEventListener('click', (evt) => {
+        document.getElementById('ex3').addItems(['teste']);
       });
   </script>
 ```
